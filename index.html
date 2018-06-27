@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Side Navigation Bar</title>
-  <!-- <link rel="stylesheet" href="./css/normalize.css"> -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/base.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="./css/side-nav.css">
+  <link rel="stylesheet" href="css/side-nav.css">
+  <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
   <div class="header">
@@ -32,6 +34,35 @@
   </aside>
   <!-- /.side-nav -->
 
+  <div class="js-modal modal">
+    <div class="js-modal-window modal__window">
+      <button class="js-modal-hide modal__hide material-icons">close</button>
+      <header class="modal__header">
+        Modal Title (H3)
+      </header>
+      <div class="modal__content">
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit repellendus iusto quam veritatis reiciendis recusandae voluptatum! Fuga id, ducimus nobis maiores, minima dolorem dolores, rem consectetur aperiam modi excepturi recusandae.</p>
+        <button class="button">Play Again</button><button class="button">Send Stats</button>
+      </div>
+    </div>
+  </div>
+  <!-- /.js-moda modal -->
+
+
+  <!-- <div class="js-modal modal modal--active">
+    <div class="modal__window">
+        <button class="js-modal-hide modal__hide material-icons">close</button>
+      <header class="modal__header">
+        <h3>Modal Header (H3)</h3>
+      </header>
+      <div class="modal__content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro commodi sit illo ut, delectus doloribus voluptatum vel at nam debitis asperiores quod vero nihil, doloremque dolore saepe quibusdam, adipisci voluptas.</p>
+
+      </div>
+    </div>
+  </div> -->
+
   <script src="./js/side-nav.js"></script>
+  <script src="./js/modal.js"></script>
 </body>
 </html>
