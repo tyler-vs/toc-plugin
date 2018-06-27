@@ -104,4 +104,8 @@ class SideNav {
   }
 }
 
-new SideNav();
+var sideNav = new SideNav();
+
+setTimeout(function() {
+  sideNav.showSideNav();
+}, 5000);
