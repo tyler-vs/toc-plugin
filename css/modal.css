@@ -1,62 +1,113 @@
-/*modal.css*/
 /*
- * Modal
+ * modal.css
  */
 
+/* javascript hook classes */
+.js-modal {}
+.js-modal-window {}
+.js-modal-hide {}
+
+
 .modal {
-    display: none;
+  display: none;
 
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    position: fixed;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: fixed;
 
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* modifier class for active state */
+/*.modal::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity 0.3s cubic-bezier(0,0,0.3,1);
+}*/
+
 .modal.modal--active {
-    display: block;
+  display: block;
 }
 
-/* window block */
+/*.modal--actve::before {
+  opacity: 1;
+}*/
+
 .modal__window {
-    background: #fff;
-    width: 76%;
-    margin: 15% auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  position: relative;
+  margin: 15% auto 0;
+  width: 96%;
+  max-width: 560px;
+  border-radius: 0;
+  border: 0;
+  background: #fff;
+  -webkit-box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  animation-name: animatetop;
+  animation-duration: 0.4s
 }
 
-/* window block elem */
-.modal__header {
-    padding: 8px 16px;
-    display: flex;
-    flex-direction: row;
-
-    background: #eee;
-    border-bottom: 1px solid #ccc;
-}
-
-/* window block elem */
-.modal__content {
-    padding: 8px 16px;
-}
-
-.modal__title {
-    color:  inherit;
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
 }
 
 .modal__hide {
-    margin-left: auto;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
 }
 
-/* modifier */
-/*.modal-button--exit .fa {
-    color: red;
-}*/
+.modal__header {
+  background: #330099;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  padding: 16px;
+  font-size: 24px;
+  border-bottom: 1px solid #fff;
+}
+
+.modal__content {
+  padding: 16px;
+}
+
+.modal__content p {
+  margin-top: 0;
+}
+
+.modal__content .lead {
+  line-height: 1.5;
+}
+
+.modal__content button {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 16px;
+  background: #fff;
+  margin-right: 16px;
+}
+
+.modal__content button::hover {
+  background: #ccc;
+}
