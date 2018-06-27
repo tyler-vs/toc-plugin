@@ -2,49 +2,6 @@
  * side-nav.css
  */
 
-/*
- * base
- */
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  padding: 0;
-  margin: 0;
-  background: #fafafa;
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-}
-
-
-/*
- * components
- */
-
-/*header*/
-.header {
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  background: #333;
-  color: #fff;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 16px;
-}
-
-.header__menu-toggle {
-  background: none;
-  border: none;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  margin: 0;
-  color: #fff;
-}
-
 
 /*sidebar*/
 .side-nav {
