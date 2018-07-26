@@ -42,14 +42,3 @@ class Modal {
     this.modalContentEl.textContent = str;
   }
 }
-
-
-// var myModal = new Modal();
-// myModal.updateModalContent('Hello world!');
-// myModal.showModal();
-// setTimeout(function() {
-//   myModal.showModal();
-//   setTimeout(function() {
-//     myModal.hideModal();
-//   }, 2500);
-// }, 2500);
