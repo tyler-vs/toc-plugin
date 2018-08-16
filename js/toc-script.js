@@ -22,7 +22,7 @@ var myPlugin = (function() {
     selectorTocs: '[data-toc]',
 
     // Classes
-    init: 'js-toc',
+    initClass: 'js-toc',
   };
 
 
@@ -38,7 +38,7 @@ var myPlugin = (function() {
   var runScript = function() {
 
     // Get all of the headings
-    var headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    var headings = document.querySelectorAll(settings.selectorHeaders);
     if (headings.length < 1)
       return;
 
@@ -49,7 +49,7 @@ var myPlugin = (function() {
     }
 
     // Get TOC container
-    var toc = document.querySelector('[data-toc]');
+    var toc = document.querySelector(settings.selectorTocs);
     if (!toc)
       return;
 
@@ -59,7 +59,7 @@ var myPlugin = (function() {
   };
 
   var addInitializationClass = function() {
-    document.documentElement.className += ' js-toc';
+    document.documentElement.className += settings.initClass;
   };
 
   // Merge two or more objects together
