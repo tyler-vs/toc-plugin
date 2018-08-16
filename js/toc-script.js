@@ -5,9 +5,21 @@
  *
  */
 
-;(function (window, document, undefined) {
+// Revealing Module Pattern
+var myPlugin = (function() {
 
-  'use strict';
+'use strict';
+
+// Public APIs
+var publicAPIs = {};
+
+/*Private functions - only accessible within plugin's script.*/
+
+/**
+ * [runScript description]
+ * @return {[type]} [description]
+ */
+  var runScript = function() {
 
   // Get all of the headings
   var headings = document.querySelectorAll( 'h2, h3, h4, h5, h6' );
@@ -26,4 +38,16 @@
   // Inject TOC into the DOM
   toc.innerHTML = '<h2>Table of Contents</h2><ul>' + links + '</ul>';
 
-})(window, document);
+}
+
+// Public functions - accessible by other scripts outside plugin.
+
+// init()
+publicAPIs.init = function() {
+  runScript();
+};
+
+// Return
+return publicAPIs;
+
+})(); // end myPlugin
