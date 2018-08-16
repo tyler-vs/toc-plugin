@@ -28,3 +28,4 @@ Ideas to extend the project:
 - [ ] Ajax loaded comments/contents with spinner
 - [ ] Loading CSS
 - [ ] Advertising areas, injected sidebars/asides in content?
+- [ ] Add more standardized options/settings object naming conventions
