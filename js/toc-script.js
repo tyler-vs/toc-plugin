@@ -13,7 +13,11 @@ var myPlugin = (function() {
   // Public APIs
   var publicAPIs = {};
 
-  /*Private functions - only accessible within plugin's script.*/
+
+
+  /**
+   * Private functions - only accessible within plugin's script.
+   */
 
   /**
    * [runScript description]
@@ -40,19 +44,32 @@ var myPlugin = (function() {
     // Inject TOC into the DOM
     toc.innerHTML = '<h2>Table of Contents</h2><ul>' + links + '</ul>';
 
-  }
+  };
 
-  // Public functions - accessible by other scripts outside plugin.
+  var addInitializationClass = function() {
+    document.documentElement.className += ' js-toc';
+  };
 
-  // init()
+
+
+  /**
+   * Public functions - accessible by other scripts outside plugin.
+   */
+
+  // Initialize our plugin
+  // - feature testing (omitted)
+  // - event listeners (omitted)
+  // - initialization class
   publicAPIs.init = function() {
+
+    // run script
     runScript();
-  }
-  ;
+
+    // initialization class
+    addInitializationClass();
+  };
 
   // Return
   return publicAPIs;
 
-}
-)();
-// end myPlugin
+})();// end myPlugin
