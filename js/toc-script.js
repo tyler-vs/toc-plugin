@@ -8,46 +8,51 @@
 // Revealing Module Pattern
 var myPlugin = (function() {
 
-'use strict';
+  'use strict';
 
-// Public APIs
-var publicAPIs = {};
+  // Public APIs
+  var publicAPIs = {};
 
-/*Private functions - only accessible within plugin's script.*/
+  /*Private functions - only accessible within plugin's script.*/
 
-/**
- * [runScript description]
- * @return {[type]} [description]
- */
+  /**
+   * [runScript description]
+   * @return {[type]} [description]
+   */
   var runScript = function() {
 
-  // Get all of the headings
-  var headings = document.querySelectorAll( 'h2, h3, h4, h5, h6' );
-  if ( headings.length < 1 ) return;
+    // Get all of the headings
+    var headings = document.querySelectorAll('h2, h3, h4, h5, h6');
+    if (headings.length < 1)
+      return;
 
-  // Create the links
-  var links = '';
-  for ( var i = 0; i < headings.length; i++ ) {
-    links += '<li><a href="#' + headings[i].id + '">' + headings[i].innerHTML + '</a></li>';
+    // Create the links
+    var links = '';
+    for (var i = 0; i < headings.length; i++) {
+      links += '<li><a href="#' + headings[i].id + '">' + headings[i].innerHTML + '</a></li>';
+    }
+
+    // Get TOC container
+    var toc = document.querySelector('[data-toc]');
+    if (!toc)
+      return;
+
+    // Inject TOC into the DOM
+    toc.innerHTML = '<h2>Table of Contents</h2><ul>' + links + '</ul>';
+
   }
 
-  // Get TOC container
-  var toc = document.querySelector( '[data-toc]' );
-  if ( !toc ) return;
+  // Public functions - accessible by other scripts outside plugin.
 
-  // Inject TOC into the DOM
-  toc.innerHTML = '<h2>Table of Contents</h2><ul>' + links + '</ul>';
+  // init()
+  publicAPIs.init = function() {
+    runScript();
+  }
+  ;
+
+  // Return
+  return publicAPIs;
 
 }
-
-// Public functions - accessible by other scripts outside plugin.
-
-// init()
-publicAPIs.init = function() {
-  runScript();
-};
-
-// Return
-return publicAPIs;
-
-})(); // end myPlugin
+)();
+// end myPlugin
