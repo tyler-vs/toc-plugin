@@ -12,6 +12,18 @@ var myPlugin = (function() {
 
   // Public APIs
   var publicAPIs = {};
+  var settings;
+
+
+  // Defaults
+  var defaults = {
+    // Selectors
+    selectorHeaders: 'h2, h3, h4, h5, h6',
+    selectorTocs: '[data-toc]',
+
+    // Classes
+    init: 'js-toc',
+  };
 
 
 
@@ -50,6 +62,45 @@ var myPlugin = (function() {
     document.documentElement.className += ' js-toc';
   };
 
+  // Merge two or more objects together
+  var extend = function () {
+
+      // Variables
+      var extended = {};
+      var deep = false;
+      var i = 0;
+
+      // Check if a deep merge
+      if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+          deep = arguments[0];
+          i++;
+      }
+
+      // Merge the object into the extended object
+      var merge = function (obj) {
+          for (var prop in obj) {
+              if (obj.hasOwnProperty(prop)) {
+                  // If property is an object, merge properties
+                  if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+                      extended[prop] = extend(extended[prop], obj[prop]);
+                  } else {
+                      extended[prop] = obj[prop];
+                  }
+              }
+          }
+      };
+
+      // Loop through each object and conduct a merge
+      for (; i < arguments.length; i++) {
+          var obj = arguments[i];
+          merge(obj);
+      }
+
+      return extended;
+
+  };
+
+
 
 
   /**
@@ -60,13 +111,21 @@ var myPlugin = (function() {
   // - feature testing (omitted)
   // - event listeners (omitted)
   // - initialization class
-  publicAPIs.init = function() {
+  publicAPIs.init = function(options) {
+
+
+    // Merge user options with the defaults
+    settings = extend(defaults, options || {});
+
 
     // run script
     runScript();
 
     // initialization class
     addInitializationClass();
+
+    // console.log(`defaults: ${defaults}.`);
+    // console.log(`settings: ${settings}.`);
   };
 
   // Return
