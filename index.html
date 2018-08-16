@@ -160,7 +160,15 @@
   <script src="js/modal.js"></script>
   <script src="js/toc-script.js"></script>
   <script>
-    myPlugin.init();
+    var myPluginOptionsObj = {
+      // Selectors
+      selectorHeaders: 'h2, h3',
+      selectorTocs: '[data-toc]',
+
+      // Classes
+      initClass: 'js-toc-custom',
+    }
+    myPlugin.init(myPluginOptionsObj);
   </script>
 </body>
 
