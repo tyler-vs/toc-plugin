@@ -29,3 +29,7 @@ Ideas to extend the project:
 - [ ] Loading CSS
 - [ ] Advertising areas, injected sidebars/asides in content?
 - [ ] Add more standardized options/settings object naming conventions
+- [ ] Add "time to read" feature
+- [ ] Add Header/sub-header title count
+- [ ] Add a separate util.js dependency for accessing commonly used "helper" functions and as not to clutter up the plugin script itself
+- [ ] ADd gist like features with URL stuff
