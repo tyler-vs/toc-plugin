@@ -58,9 +58,18 @@ var myPlugin = (function() {
 
   };
 
+
   var addInitializationClass = function() {
     document.documentElement.className += settings.initClass;
   };
+
+
+  var removeInitializationClass = function() {
+    if (document.documentElement.classList.contains(settings.initClass)) {
+      document.documentElement.classList.remove(settings.initClass);
+    }
+  };
+
 
   // Merge two or more objects together
   var extend = function () {
@@ -113,6 +122,10 @@ var myPlugin = (function() {
   // - initialization class
   publicAPIs.init = function(options) {
 
+    // Good practice to destroy before initializing in case
+    // it exists already
+    publicAPIs.destroy();
+
 
     // Merge user options with the defaults
     settings = extend(defaults, options || {});
@@ -127,6 +140,31 @@ var myPlugin = (function() {
     // console.log(`defaults: ${defaults}.`);
     // console.log(`settings: ${settings}.`);
   };
+
+  publicAPIs.destroy = function() {
+    // only run is settings is set
+    if(!settings) {
+      return;
+    }
+
+    // remove event listeners
+    // …
+
+    // remove plugin code
+    var toc = document.querySelector(settings.selectorTocs);
+    if (!toc)
+      return;
+
+    // Inject TOC into the DOM
+    toc.innerHTML = '';
+
+    // remove initialization class
+    removeInitializationClass();
+
+    // reset settings
+    settings = null;
+
+  }
 
   // Return
   return publicAPIs;
