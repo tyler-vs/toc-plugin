@@ -45,7 +45,18 @@ var myPlugin = (function() {
     // Create the links
     var links = '';
     for (var i = 0; i < headings.length; i++) {
+
+      // If the heading has no ID, give it one
+      if (!headings[i].id) {
+
+        // Convert heading text to valid ID
+        // Regex pattern: http://stackoverflow.com/a/9635698/1293256
+        headings[i].id = headings[i].innerHTML.replace( /^[^a-z]+|[^\w:.-]+/gi, '_' ).toLowerCase();
+      }
+
+      // Creat list item with link
       links += '<li><a href="#' + headings[i].id + '">' + toTitleCase(headings[i].innerHTML) + '</a></li>';
+
     }
 
     // Get TOC container
