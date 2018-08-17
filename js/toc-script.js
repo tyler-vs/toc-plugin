@@ -21,6 +21,8 @@ var myPlugin = (function() {
     selectorHeaders: 'h2, h3, h4, h5, h6',
     selectorTocs: '[data-toc]',
 
+    primaryHeaderLevels: [1,2,3],
+
     // Classes
     initClass: 'js-toc',
   };
@@ -45,8 +47,6 @@ var myPlugin = (function() {
     // Add placeholder for for current heading level
     var level = 0;
     var newLevel;
-    var primaryLevels = [1,2];
-    var secondaryLevels = [3,4,5,6];
 
 
     // Create the links
@@ -66,12 +66,16 @@ var myPlugin = (function() {
       }
 
       // Creat list item with link
-      if ( newLevel > level ) {
+      // if ( newLevel > level ) {
+      if ( newLevel > level && settings.primaryHeaderLevels.indexOf(newLevel) !== -1 ) {
         links += '<ul><li>';
+        console.log(`A: Lvl: ${newLevel}, val: ${headings[i].textContent}.`);
       } else if ( newLevel < level ) {
         links += '</li></ul></li><li>';
+        console.log(`B: Lvl: ${newLevel}, val: ${headings[i].textContent}.`);
       } else {
         links += '</li><li>';
+        console.log(`C: Lvl: ${newLevel}, val: ${headings[i].textContent}.`);
       }
 
       links += '<a href="#' + headings[i].id + '">' + toTitleCase(headings[i].innerHTML) + '</a>';
