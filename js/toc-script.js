@@ -45,7 +45,7 @@ var myPlugin = (function() {
     // Create the links
     var links = '';
     for (var i = 0; i < headings.length; i++) {
-      links += '<li><a href="#' + headings[i].id + '">' + headings[i].innerHTML + '</a></li>';
+      links += '<li><a href="#' + headings[i].id + '">' + toTitleCase(headings[i].innerHTML) + '</a></li>';
     }
 
     // Get TOC container
@@ -74,41 +74,53 @@ var myPlugin = (function() {
   // Merge two or more objects together
   var extend = function () {
 
-      // Variables
-      var extended = {};
-      var deep = false;
-      var i = 0;
+    // Variables
+    var extended = {};
+    var deep = false;
+    var i = 0;
 
-      // Check if a deep merge
-      if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
-          deep = arguments[0];
-          i++;
-      }
+    // Check if a deep merge
+    if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+        deep = arguments[0];
+        i++;
+    }
 
-      // Merge the object into the extended object
-      var merge = function (obj) {
-          for (var prop in obj) {
-              if (obj.hasOwnProperty(prop)) {
-                  // If property is an object, merge properties
-                  if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
-                      extended[prop] = extend(extended[prop], obj[prop]);
-                  } else {
-                      extended[prop] = obj[prop];
-                  }
-              }
+    // Merge the object into the extended object
+    var merge = function (obj) {
+      for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+          // If property is an object, merge properties
+          if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+              extended[prop] = extend(extended[prop], obj[prop]);
+          } else {
+              extended[prop] = obj[prop];
           }
-      };
-
-      // Loop through each object and conduct a merge
-      for (; i < arguments.length; i++) {
-          var obj = arguments[i];
-          merge(obj);
+        }
       }
+    };
 
-      return extended;
+    // Loop through each object and conduct a merge
+    for (; i < arguments.length; i++) {
+      var obj = arguments[i];
+      merge(obj);
+    }
 
+    return extended;
   };
 
+  /*!
+   * Convert a string to title case
+   * source: https://gist.github.com/SonyaMoisset/aa79f51d78b39639430661c03d9b1058#file-title-case-a-sentence-for-loop-wc-js
+   * @param  {String} str The string to convert to title case
+   * @return {String}     The converted string
+   */
+  var toTitleCase = function (str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+  };
 
 
 
