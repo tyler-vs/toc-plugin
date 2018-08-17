@@ -42,9 +42,20 @@ var myPlugin = (function() {
     if (headings.length < 1)
       return;
 
+    // Add placeholder for for current heading level
+    var level = 0;
+    var newLevel;
+    var primaryLevels = [1,2];
+    var secondaryLevels = [3,4,5,6];
+
+
     // Create the links
     var links = '';
     for (var i = 0; i < headings.length; i++) {
+
+      // Get heading level
+      newLevel = parseInt(headings[i].tagName.slice(1), 10);
+      console.log(`newLevel: ${newLevel}.`);
 
       // If the heading has no ID, give it one
       if (!headings[i].id) {
@@ -55,9 +66,22 @@ var myPlugin = (function() {
       }
 
       // Creat list item with link
-      links += '<li><a href="#' + headings[i].id + '">' + toTitleCase(headings[i].innerHTML) + '</a></li>';
+      if ( newLevel > level ) {
+        links += '<ul><li>';
+      } else if ( newLevel < level ) {
+        links += '</li></ul></li><li>';
+      } else {
+        links += '</li><li>';
+      }
+
+      links += '<a href="#' + headings[i].id + '">' + toTitleCase(headings[i].innerHTML) + '</a>';
+
+      // Update the current level
+      level = newLevel;
 
     }
+
+    links += '</li></ul>';
 
     // Get TOC container
     var toc = document.querySelector(settings.selectorTocs);
@@ -65,7 +89,7 @@ var myPlugin = (function() {
       return;
 
     // Inject TOC into the DOM
-    toc.innerHTML = '<h2>Table of Contents</h2><ul>' + links + '</ul>';
+    toc.innerHTML = '<h2>Table of Contents</h2>' + links;
 
   };
 
