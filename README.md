@@ -1,35 +1,65 @@
 
-# Side Navigation Bar
+# [TOC Plugin](https://github.com/tyler-vs/toc-plugin)
 
-[Supercharged YouTube Video](https://www.youtube.com/watch?v=e5CXg1sjTqQ)
+A JavaScript plugin that generates a Table of Contents listing based off the HTML header elements within a document. Based off of the plugin built in the [Vanilla JS Crash Course](https://github.com/cferdinandi/vanilla-js-crash-course) by [Chris Ferdinandi](https://github.com/cferdinandi).
 
-Added a emulation script for a [modal](js/modal.js).
+## Getting Started
 
-## notes
+### Include the plugin's script files
 
-View notes [here](https://gist.github.com/tyler-vs/d26cd5ed3129fea91f450d6f16218148).
+This code adds the required files to the webpage. These files need to be included before initializing the slider.
 
+```html
+
+<script src="js/toc-script.js"></script>
+
+```
+
+### Initialize the plugin
+
+This code tells the webpage to start the plugin setup. Without this code the plugin would not be visible on the page.
+
+```html
+
+<script>
+  tocPlugin.init(myPluginOptionsObj);
+</script>
+
+```
+
+#### Optionally pass in user configurations
+
+Pass in a JS object with configuration options.
+
+```html
+
+<script>
+  var myPluginOptionsObj = {
+    // Selectors
+    selectorHeaders: 'h2, h3, h4, h5, h6',
+    selectorTocs: '[data-toc]',
+
+    // Classes
+    initClass: 'js-toc-custom',
+  }
+  tocPlugin.init(myPluginOptionsObj);
+</script>
+
+```
+
+### Create the HTML for the plugin
+
+This is the code that the slider plugin will use to generate the Table of Contents.
+
+```html
+
+<div data-toc></div>
+
+```
 
 ## Credits
 
-- https://www.youtube.com/watch?v=Mhnj3PiPnZw
+- __[Chris Ferdinandi](https://github.com/cferdinandi)__, original plugin creator.
+- __[Vanilla JS Crash Course](https://github.com/cferdinandi/vanilla-js-crash-course)__, course used to develop the plugin.
+- __[bxSlider](https://bxslider.com/install/)__, emulated their plugins documentation for the "Getting Started" section.
 
-## Ideas
-
-Ideas to extend the project:
-
-- [ ] Markdown converter
-- [ ] Medium-like content intereactivity (e.g. highlighting quotes, social share, comments, ect.)
-- [ ] Styles for certain elements: text headers, sub-header, horizontal rules, blockquote, code, hidden-show for answers (like stack overflow), embeeded code gist/code editor, ect.)
-- [ ] Add `<section>` elements to wrap article/post content for use in a accordion styled nav menu
-- [ ] GitBooks demo
-- [ ] Footnotes support
-- [ ] Download icons based on type of download
-- [ ] Ajax loaded comments/contents with spinner
-- [ ] Loading CSS
-- [ ] Advertising areas, injected sidebars/asides in content?
-- [ ] Add more standardized options/settings object naming conventions
-- [ ] Add "time to read" feature
-- [ ] Add Header/sub-header title count
-- [ ] Add a separate util.js dependency for accessing commonly used "helper" functions and as not to clutter up the plugin script itself
-- [ ] ADd gist like features with URL stuff
